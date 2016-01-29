@@ -1,4 +1,4 @@
-package com.carlos.voiceline.lib;
+package com.carlos.voiceline.mylibrary;
 
 import org.junit.Test;
 

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.carlos.voiceline.lib">
+    package="com.carlos.voiceline.mylibrary">
 
     <application
         android:allowBackup="true"
