@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="voiceView">
+        <attr name="middleLine" format="color" />
+        <attr name="middleLineHeight" format="dimension" />
+        <attr name="voiceLine" format="color" />
+        <attr name="rectWidth" format="dimension" />
+        <attr name="rectSpace" format="dimension" />
+        <attr name="rectInitHeight" format="dimension" />
+        <attr name="maxVolume" format="float" />
+        <attr name="viewMode">
+            <enum name="line" value="0" />
+            <enum name="rect" value="1" />
+        </attr>
+        <attr name="sensibility">
+            <enum name="one" value="1" />
+            <enum name="two" value="2" />
+            <enum name="three" value="3" />
+            <enum name="four" value="4" />
+            <enum name="five" value="5" />
+        </attr>
+    </declare-styleable>
+</resources>
