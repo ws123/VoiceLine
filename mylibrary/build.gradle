@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 
-
 version = "1.0.0"
 android {
     compileSdkVersion 23
@@ -21,5 +20,31 @@ android {
 }
 
 dependencies {
-
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
 }
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'voiceLine'
+
+    publishedGroupId = 'com.carlos.voiceline'
+    libraryName = 'voiceLineLibrary'
+    artifact = 'mylibrary'
+
+    libraryDescription = '一个可以根据音量显示波形的控件'
+
+    siteUrl = 'https://github.com/ws123/VoiceLine'
+    gitUrl = 'https://github.com/ws123/VoiceLine.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'carlos'
+    developerName = 'carlos'
+    developerEmail = '372532647@qq.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

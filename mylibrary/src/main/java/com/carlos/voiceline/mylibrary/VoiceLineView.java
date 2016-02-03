@@ -29,27 +29,19 @@ public class VoiceLineView extends View implements Runnable {
     private Paint paintVoicLine;
     private int mode;
     private int sensibility = 4;
-    /**
-     * 传进来的最大音量
-     */
+
     private float maxVolume = 100;
 
-    /**
-     * 初相
-     */
+
     private float translateX = 0;
     private boolean isViewAlive = true;
     private boolean isSet = false;
-    /**
-     * 振幅
-     */
+
     private float amplitude = 1;
     private float volume = 10;
     private float targetVolume = 1;
 
-    /**
-     * 方块属性
-     */
+
     private long speedY = 50;
     private float rectWidth = 25;
     private float rectSpace = 5;

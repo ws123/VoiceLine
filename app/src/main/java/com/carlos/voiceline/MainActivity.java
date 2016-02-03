@@ -22,8 +22,13 @@ public class MainActivity extends AppCompatActivity implements Runnable {
             super.handleMessage(msg);
             double ratio = (double) mMediaRecorder.getMaxAmplitude() / 100;
             double db = 0;// 分贝
+            //默认的最大音量是100,可以修改，但其实默认的，在测试过程中就有不错的表现
+            //你可以传自定义的数字进去，但需要在一定的范围内，比如0-200，就需要在xml文件中配置maxVolume
+            //同时，也可以配置灵敏度sensibility
             if (ratio > 1)
                 db = 20 * Math.log10(ratio);
+            //只要有一个线程，不断调用这个方法，就可以使波形变化
+            //主要，这个方法必须在ui线程中调用
             voiceLineView.setVolume((int) (db));
         }
     };
@@ -37,16 +42,9 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         if (mMediaRecorder == null)
             mMediaRecorder = new MediaRecorder();
 
-            /* ②setAudioSource/setVedioSource */
-        mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);// 设置麦克风
-            /*
-             * ②设置输出文件的格式：THREE_GPP/MPEG-4/RAW_AMR/Default THREE_GPP(3gp格式
-             * ，H263视频/ARM音频编码)、MPEG-4、RAW_AMR(只支持音频且音频编码要求为AMR_NB)
-             */
+        mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
-            /* ②设置音频文件的编码：AAC/AMR_NB/AMR_MB/Default 声音的（波形）的采样 */
         mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-            /* ③准备 */
         File file = new File(Environment.getExternalStorageDirectory().getPath(), "hello.log");
         if (!file.exists()) {
             try {
@@ -62,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-            /* ④开始 */
         mMediaRecorder.start();
 
         Thread thread = new Thread(this);

@@ -14,7 +14,7 @@
         voiceView:middleLineHeight="1dp"
         voiceView:rectSpace="2dp"
         voiceView:rectWidth="5dp"
-        voiceView:viewMode="rect"
+        voiceView:viewMode="line"
         voiceView:voiceLine="@android:color/holo_red_light" />
 
 </RelativeLayout>
