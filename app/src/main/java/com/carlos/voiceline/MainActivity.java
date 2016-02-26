@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         voiceLineView = (VoiceLineView) findViewById(R.id.voicLine);
-        voiceLineView.start();
         if (mMediaRecorder == null)
             mMediaRecorder = new MediaRecorder();
 

@@ -18,7 +18,7 @@ import java.util.List;
  * Created by carlos on 2016/1/29.
  * 自定义声音振动曲线view
  */
-public class VoiceLineView extends View implements Runnable {
+public class VoiceLineView extends View {
     private final int LINE = 0;
     private final int RECT = 1;
 
@@ -34,7 +34,6 @@ public class VoiceLineView extends View implements Runnable {
 
 
     private float translateX = 0;
-    private boolean isViewAlive = true;
     private boolean isSet = false;
 
     private float amplitude = 1;
@@ -47,9 +46,6 @@ public class VoiceLineView extends View implements Runnable {
     private float rectSpace = 5;
     private float rectInitHeight = 4;
     private List<Rect> rectList;
-
-
-    private Thread thread;
 
     List<Path> paths = null;
 
@@ -80,13 +76,12 @@ public class VoiceLineView extends View implements Runnable {
         } else {
             middleLineColor = typedArray.getColor(R.styleable.voiceView_middleLine, Color.BLACK);
             middleLineHeight = typedArray.getDimension(R.styleable.voiceView_middleLineHeight, 4);
-            paths = new ArrayList<>();
-            for (int i = 0; i < 22; i++) {
+            paths = new ArrayList<>(20);
+            for (int i = 0; i < 20; i++) {
                 paths.add(new Path());
             }
         }
         typedArray.recycle();
-        thread = new Thread(this);
     }
 
     @Override
@@ -97,6 +92,7 @@ public class VoiceLineView extends View implements Runnable {
             drawMiddleLine(canvas);
             drawVoiceLine(canvas);
         }
+        run();
     }
 
     private void drawMiddleLine(Canvas canvas) {
@@ -108,12 +104,6 @@ public class VoiceLineView extends View implements Runnable {
         canvas.save();
         canvas.drawRect(0, getHeight() / 2 - middleLineHeight / 2, getWidth(), getHeight() / 2 + middleLineHeight / 2, paint);
         canvas.restore();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        isViewAlive = false;
-        super.onDetachedFromWindow();
     }
 
     private void drawVoiceLine(Canvas canvas) {
@@ -134,8 +124,8 @@ public class VoiceLineView extends View implements Runnable {
         for (float i = getWidth() - 1; i >= 0; i -= 1) {
             amplitude = 4 * volume * i / getWidth() - 4 * volume * i * i / getWidth() / getWidth();
             for (int n = 1; n <= paths.size(); n++) {
-                double sin = amplitude * Math.sin((i - Math.pow(1.22, n)) * Math.PI / 180 - translateX);
-                paths.get(n - 1).lineTo(i, (float) ((2 * n * sin / paths.size() - 15 * sin / paths.size()) + moveY));
+                float sin = amplitude * (float) Math.sin((i - Math.pow(1.22, n)) * Math.PI / 180 - translateX);
+                paths.get(n - 1).lineTo(i, (2 * n * sin / paths.size() - 15 * sin / paths.size() + moveY));
             }
         }
         for (int n = 0; n < paths.size(); n++) {
@@ -180,12 +170,6 @@ public class VoiceLineView extends View implements Runnable {
         rectChange();
     }
 
-    public void start() {
-        if (thread != null) {
-            thread.start();
-        }
-    }
-
     public void setVolume(int volume) {
         if (volume > maxVolume * sensibility / 25) {
             isSet = true;
@@ -194,7 +178,7 @@ public class VoiceLineView extends View implements Runnable {
     }
 
     private void lineChange() {
-        translateX += 1;
+        translateX += 1.5;
         if (volume < targetVolume && isSet) {
             volume += getHeight() / 30;
         } else {
@@ -229,24 +213,11 @@ public class VoiceLineView extends View implements Runnable {
         }
     }
 
-    @Override
     public void run() {
-        while (isViewAlive) {
-            if (mode == RECT) {
-                postInvalidate();
-                try {
-                    Thread.sleep(30);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                postInvalidate();
-                try {
-                    Thread.sleep(90);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        if (mode == RECT) {
+            postInvalidateDelayed(30);
+        } else {
+            postInvalidateDelayed(90);
         }
     }
 }

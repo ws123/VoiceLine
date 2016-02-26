@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-version = "1.0.0"
+version = "1.0.4"                                //项目版本号
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -25,24 +25,24 @@ dependencies {
 }
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'voiceLine'
+    bintrayName = 'voiceLine'                                //项目名字
 
-    publishedGroupId = 'com.carlos.voiceline'
-    libraryName = 'voiceLineLibrary'
-    artifact = 'mylibrary'
+    publishedGroupId = 'com.carlos.voiceline'                //GroupId,这个要别人引用的时候会用到，
+    libraryName = 'voiceLineLibrary'                         //这个是项目名字
+    artifact = 'mylibrary'                                   //artifactId，这个也是别人引用的时候，会用到
 
-    libraryDescription = '一个可以根据音量显示波形的控件'
+    libraryDescription = '一个可以根据音量显示波形的控件'       //项目描述
 
-    siteUrl = 'https://github.com/ws123/VoiceLine'
-    gitUrl = 'https://github.com/ws123/VoiceLine.git'
+    siteUrl = 'https://github.com/ws123/VoiceLine'          //把项目分享到github后的项目地址
+    gitUrl = 'https://github.com/ws123/VoiceLine.git'       //分享后的项目git地址
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.4'
 
-    developerId = 'carlos'
-    developerName = 'carlos'
-    developerEmail = '372532647@qq.com'
+    developerId = 'carlos'                             //这个开发者id，自己写
+    developerName = 'carlos'                           //这个是开发者名字
+    developerEmail = '372532647@qq.com'                //开发者邮箱
 
-    licenseName = 'The Apache Software License, Version 2.0'
+    licenseName = 'The Apache Software License, Version 2.0'     //开源协议
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
 }
