@@ -7,7 +7,7 @@
 引用方法：
 
 ```groovy
-![code]compile 'com.carlos.voiceline:mylibrary:1.0.4'
+compile 'com.carlos.voiceline:mylibrary:1.0.4'
 ```
 ####自定义属性列表如下：
 ```xml
