@@ -66,6 +66,14 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     }
 
     @Override
+    protected void onDestroy() {
+        isAlive = false;
+        mMediaRecorder.release();
+        mMediaRecorder = null;
+        super.onDestroy();
+    }
+
+    @Override
     public void run() {
         while (isAlive) {
             handler.sendEmptyMessage(0);

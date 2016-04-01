@@ -23,6 +23,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 }
+
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'voiceLine'                                //项目名字
