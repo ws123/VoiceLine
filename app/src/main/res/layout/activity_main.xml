@@ -10,11 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
+        voiceView:maxVolume="200"
         voiceView:middleLine="@android:color/holo_red_light"
         voiceView:middleLineHeight="1dp"
+        voiceView:fineness="three"
         voiceView:rectSpace="2dp"
         voiceView:rectWidth="5dp"
+        voiceView:sensibility="four"
         voiceView:viewMode="line"
         voiceView:voiceLine="@android:color/holo_red_light" />
-
 </RelativeLayout>

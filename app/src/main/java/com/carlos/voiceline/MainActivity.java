@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            if(mMediaRecorder==null) return;
             double ratio = (double) mMediaRecorder.getMaxAmplitude() / 100;
             double db = 0;// 分贝
             //默认的最大音量是100,可以修改，但其实默认的，在测试过程中就有不错的表现

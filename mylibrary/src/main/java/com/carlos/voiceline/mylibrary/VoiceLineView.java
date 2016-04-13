@@ -28,6 +28,9 @@ public class VoiceLineView extends View {
     private Paint paint;
     private Paint paintVoicLine;
     private int mode;
+    /**
+     * 灵敏度
+     */
     private int sensibility = 4;
 
     private float maxVolume = 100;
@@ -36,8 +39,15 @@ public class VoiceLineView extends View {
     private float translateX = 0;
     private boolean isSet = false;
 
+    /**
+     * 振幅
+     */
     private float amplitude = 1;
+    /**
+     * 音量
+     */
     private float volume = 10;
+    private int fineness = 1;
     private float targetVolume = 1;
 
 
@@ -76,6 +86,7 @@ public class VoiceLineView extends View {
         } else {
             middleLineColor = typedArray.getColor(R.styleable.voiceView_middleLine, Color.BLACK);
             middleLineHeight = typedArray.getDimension(R.styleable.voiceView_middleLineHeight, 4);
+            fineness = typedArray.getInt(R.styleable.voiceView_fineness,1);
             paths = new ArrayList<>(20);
             for (int i = 0; i < 20; i++) {
                 paths.add(new Path());
@@ -86,12 +97,14 @@ public class VoiceLineView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        long start = System.currentTimeMillis();
         if (mode == RECT) {
             drawVoiceRect(canvas);
         } else {
             drawMiddleLine(canvas);
             drawVoiceLine(canvas);
         }
+        System.out.println("总共花费的时间" + (System.currentTimeMillis() - start));
         run();
     }
 
@@ -121,7 +134,7 @@ public class VoiceLineView extends View {
             paths.get(i).reset();
             paths.get(i).moveTo(0, getHeight() / 2);
         }
-        for (float i = getWidth() - 1; i >= 0; i -= 1) {
+        for (float i = getWidth() - 1; i >= 0; i -= fineness) {
             amplitude = 4 * volume * i / getWidth() - 4 * volume * i * i / getWidth() / getWidth();
             for (int n = 1; n <= paths.size(); n++) {
                 float sin = amplitude * (float) Math.sin((i - Math.pow(1.22, n)) * Math.PI / 180 - translateX);
