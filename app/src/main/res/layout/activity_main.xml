@@ -18,5 +18,6 @@
         voiceView:rectWidth="5dp"
         voiceView:sensibility="four"
         voiceView:viewMode="line"
+        voiceView:lineSpeed="90"
         voiceView:voiceLine="@android:color/holo_red_light" />
 </RelativeLayout>

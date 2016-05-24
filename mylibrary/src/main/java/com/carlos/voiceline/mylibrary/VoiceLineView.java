@@ -57,6 +57,9 @@ public class VoiceLineView extends View {
     private float rectInitHeight = 4;
     private List<Rect> rectList;
 
+    private long lastTime = 0;
+    private int lineSpeed = 90;
+
     List<Path> paths = null;
 
     public VoiceLineView(Context context) {
@@ -86,12 +89,14 @@ public class VoiceLineView extends View {
         } else {
             middleLineColor = typedArray.getColor(R.styleable.voiceView_middleLine, Color.BLACK);
             middleLineHeight = typedArray.getDimension(R.styleable.voiceView_middleLineHeight, 4);
-            fineness = typedArray.getInt(R.styleable.voiceView_fineness,1);
+            lineSpeed = typedArray.getInt(R.styleable.voiceView_lineSpeed, 90);
+            fineness = typedArray.getInt(R.styleable.voiceView_fineness, 1);
             paths = new ArrayList<>(20);
             for (int i = 0; i < 20; i++) {
                 paths.add(new Path());
             }
         }
+        System.out.println("执行了初使化");
         typedArray.recycle();
     }
 
@@ -191,7 +196,17 @@ public class VoiceLineView extends View {
     }
 
     private void lineChange() {
-        translateX += 1.5;
+        if (lastTime == 0) {
+            lastTime = System.currentTimeMillis();
+            translateX += 1.5;
+        } else {
+            if (System.currentTimeMillis() - lastTime > lineSpeed) {
+                lastTime = System.currentTimeMillis();
+                translateX += 1.5;
+            } else {
+                return;
+            }
+        }
         if (volume < targetVolume && isSet) {
             volume += getHeight() / 30;
         } else {
@@ -230,7 +245,13 @@ public class VoiceLineView extends View {
         if (mode == RECT) {
             postInvalidateDelayed(30);
         } else {
-            postInvalidateDelayed(90);
+            invalidate();
         }
+    }
+
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
     }
 }
