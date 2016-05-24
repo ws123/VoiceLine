@@ -96,20 +96,17 @@ public class VoiceLineView extends View {
                 paths.add(new Path());
             }
         }
-        System.out.println("执行了初使化");
         typedArray.recycle();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        long start = System.currentTimeMillis();
         if (mode == RECT) {
             drawVoiceRect(canvas);
         } else {
             drawMiddleLine(canvas);
             drawVoiceLine(canvas);
         }
-        System.out.println("总共花费的时间" + (System.currentTimeMillis() - start));
         run();
     }
 
@@ -249,9 +246,4 @@ public class VoiceLineView extends View {
         }
     }
 
-
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-    }
 }
