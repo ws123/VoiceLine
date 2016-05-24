@@ -7,10 +7,11 @@
 引用方法：
 
 ```groovy
-compile 'com.carlos.voiceline:mylibrary:1.0.4'
+compile 'com.carlos.voiceline:mylibrary:1.0.5'
 ```
 ####自定义属性列表如下：
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="voiceView">
         <!--中间线的颜色，就是波形的时候，大家可以看到，中间有一条直线，就是那个-->
@@ -40,23 +41,33 @@ compile 'com.carlos.voiceline:mylibrary:1.0.4'
             <enum name="four" value="4" />
             <enum name="five" value="5" />
         </attr>
+        <!--精细度，绘制曲线的时候，每几个像素绘制一次，默认是1，一般，这个值越小，曲线越顺滑，
+            但在一些旧手机上，会出现帧率过低的情况，可以把这个值调大一点，在图片的顺滑度与帧率之间做一个取舍-->
+        <attr name="fineness">
+            <enum name="one" value="1" />
+            <enum name="two" value="2" />
+            <enum name="three" value="3" />
+        </attr>
     </declare-styleable>
 </resources>
 ```
 实际使用过程中，可以这样配置：
 
 ```xml
-<com.carlos.voiceline.mylibrary.VoiceLineView  
-    android:id="@+id/voicLine"  
-    android:layout_width="match_parent"  
-    android:layout_height="match_parent"  
-    android:background="@android:color/white"  
-    voiceView:middleLine="@android:color/holo_red_light"  
-    voiceView:middleLineHeight="1dp"  
-    voiceView:rectSpace="2dp"  
-    voiceView:rectWidth="5dp"  
-    voiceView:viewMode="line"  
-    voiceView:voiceLine="@android:color/holo_red_light" />  
+    <com.carlos.voiceline.mylibrary.VoiceLineView
+        android:id="@+id/voicLine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        voiceView:maxVolume="200"
+        voiceView:middleLine="@android:color/holo_red_light"
+        voiceView:middleLineHeight="1dp"
+        voiceView:fineness="three"
+        voiceView:rectSpace="2dp"
+        voiceView:rectWidth="5dp"
+        voiceView:sensibility="four"
+        voiceView:viewMode="line"
+        voiceView:voiceLine="@android:color/holo_red_light" /> 
 ```
 
 ### License
