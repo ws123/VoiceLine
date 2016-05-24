@@ -20,6 +20,8 @@ compile 'com.carlos.voiceline:mylibrary:1.0.5'
         <attr name="middleLineHeight" format="dimension" />
         <!--波动的线的颜色，如果是距形样式的话，刚是距形的颜色-->
         <attr name="voiceLine" format="color" />
+        <!--波动线的横向移动速度，线的速度的反比，即这个值越小，线横向移动越快，越大线移动越慢，默认90-->
+        <attr name="lineSpeed" format="integer" />
         <!--矩形的宽度-->
         <attr name="rectWidth" format="dimension" />
         <!--矩形之间的间隔-->
