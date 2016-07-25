@@ -134,7 +134,7 @@ public class VoiceLineView extends View {
         int moveY = getHeight() / 2;
         for (int i = 0; i < paths.size(); i++) {
             paths.get(i).reset();
-            paths.get(i).moveTo(0, getHeight() / 2);
+            paths.get(i).moveTo(getWidth(), getHeight() / 2);
         }
         for (float i = getWidth() - 1; i >= 0; i -= fineness) {
             amplitude = 4 * volume * i / getWidth() - 4 * volume * i * i / getWidth() / getWidth();
@@ -161,7 +161,7 @@ public class VoiceLineView extends View {
             paintVoicLine = new Paint();
             paintVoicLine.setColor(voiceLineColor);
             paintVoicLine.setAntiAlias(true);
-            paintVoicLine.setStyle(Paint.Style.FILL);
+            paintVoicLine.setStyle(Paint.Style.STROKE);
             paintVoicLine.setStrokeWidth(2);
         }
         if (rectList == null) {

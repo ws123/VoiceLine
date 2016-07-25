@@ -8,10 +8,10 @@
     <com.carlos.voiceline.mylibrary.VoiceLineView
         android:id="@+id/voicLine"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="1000dp"
         android:background="@android:color/white"
         voiceView:maxVolume="200"
-        voiceView:middleLine="@android:color/holo_red_light"
+        voiceView:middleLine="@android:color/black"
         voiceView:middleLineHeight="1dp"
         voiceView:fineness="three"
         voiceView:rectSpace="2dp"
@@ -19,5 +19,5 @@
         voiceView:sensibility="four"
         voiceView:viewMode="line"
         voiceView:lineSpeed="90"
-        voiceView:voiceLine="@android:color/holo_red_light" />
+        voiceView:voiceLine="@android:color/holo_green_dark" />
 </RelativeLayout>

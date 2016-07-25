@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-version = "1.0.5"                                //项目版本号
+version = "1.0.6"                                //项目版本号
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -37,7 +37,7 @@ ext {
     siteUrl = 'https://github.com/ws123/VoiceLine'          //把项目分享到github后的项目地址
     gitUrl = 'https://github.com/ws123/VoiceLine.git'       //分享后的项目git地址
 
-    libraryVersion = '1.0.5'
+    libraryVersion = '1.0.6'
 
     developerId = 'carlos'                             //这个开发者id，自己写
     developerName = 'carlos'                           //这个是开发者名字
