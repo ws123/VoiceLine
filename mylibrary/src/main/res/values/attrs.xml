@@ -5,7 +5,7 @@
         <attr name="middleLine" format="color" />
         <!--中间线的高度，因为宽度是充满的-->
         <attr name="middleLineHeight" format="dimension" />
-        <!--波动的线的颜色，如果是距形样式的话，刚是距形的颜色-->
+        <!--波动的线的颜色，如果是矩形样式的话，刚是矩形的颜色-->
         <attr name="voiceLine" format="color" />
         <!--波动线的横向移动速度，线的速度的反比，即这个值越小，线横向移动越快，越大线移动越慢，默认90-->
         <attr name="lineSpeed" format="integer" />
